@@ -314,32 +314,32 @@
 						<configuration>
 							<file>${project.basedir}/${version.template.file}</file>
 							<outputFile>${project.basedir}/${version.file}</outputFile>
-							<replacements>
-								<replacement>
-									<token>@buildnumber@</token>
-									<value>${buildNumber}</value>
-								</replacement>
-								<replacement>
-									<token>@buildtime@</token>
-									<value>${maven.build.timestamp}</value>
-								</replacement>
-								<replacement>
-									<token>@pomversion@</token>
-									<value>${project.version}</value>
-								</replacement>
-								<replacement>
-									<token>@giturl@</token>
-									<value>https://github.com/MyCATApache/Mycat-Server.git</value>
-								</replacement>
-								<replacement>
-									<token>@mycatsite@</token>
-									<value>http://www.mycat.org.cn</value>
-								</replacement>
-								<replacement>
-									<token>@qqgroup@</token>
-									<value>106088787</value>
-								</replacement>
-							</replacements>
+<!--							<replacements>-->
+<!--								<replacement>-->
+<!--									<token>@buildnumber@</token>-->
+<!--									<value>${buildNumber}</value>-->
+<!--								</replacement>-->
+<!--								<replacement>-->
+<!--									<token>@buildtime@</token>-->
+<!--									<value>${maven.build.timestamp}</value>-->
+<!--								</replacement>-->
+<!--								<replacement>-->
+<!--									<token>@pomversion@</token>-->
+<!--									<value>${project.version}</value>-->
+<!--								</replacement>-->
+<!--								<replacement>-->
+<!--									<token>@giturl@</token>-->
+<!--									<value>https://github.com/MyCATApache/Mycat-Server.git</value>-->
+<!--								</replacement>-->
+<!--								<replacement>-->
+<!--									<token>@mycatsite@</token>-->
+<!--									<value>http://www.mycat.org.cn</value>-->
+<!--								</replacement>-->
+<!--								<replacement>-->
+<!--									<token>@qqgroup@</token>-->
+<!--									<value>106088787</value>-->
+<!--								</replacement>-->
+<!--							</replacements>-->
 						</configuration>
 					</execution>
 					<execution>
@@ -354,7 +354,7 @@
 							<outputFile>${project.basedir}/src/main/java/io/mycat/config/Versions.java</outputFile>
 							<replacements>
 								<replacement>
-									<token>@server-version@</token>
+<!--									<token>@server-version@</token>-->
 									<value>5.6.29-mycat-${project.version}-${timestamp}</value>
 								</replacement>
 							</replacements>
@@ -379,7 +379,7 @@
 				<artifactId>maven-source-plugin</artifactId>
 				<version>2.1.2</version>
 				<configuration>
-					<encoding>${app.encoding}</encoding>
+<!--					<encoding>${app.encoding}</encoding>-->
 					<attach>true</attach>
 				</configuration>
 				<executions>
@@ -409,25 +409,25 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-eclipse-plugin</artifactId>
-				<configuration>
-					<sourceExcludes>
-						<sourceExclude>**/.svn/**</sourceExclude>
-					</sourceExcludes>
-					<downloadSources>true</downloadSources>
-					<outputDirectory>classes</outputDirectory>
-					<additionalConfig>
-						<file>
-							<name>.settings/org.eclipse.core.resources.prefs</name>
-							<content>
-               <![CDATA[eclipse.preferences.version=1${line.separator}encoding/<project>=${app.encoding}${line.separator}]]>
-							</content>
-						</file>
-					</additionalConfig>
-				</configuration>
-			</plugin>
+<!--			<plugin>-->
+<!--				<groupId>org.apache.maven.plugins</groupId>-->
+<!--				<artifactId>maven-eclipse-plugin</artifactId>-->
+<!--				<configuration>-->
+<!--					<sourceExcludes>-->
+<!--						<sourceExclude>**/.svn/**</sourceExclude>-->
+<!--					</sourceExcludes>-->
+<!--					<downloadSources>true</downloadSources>-->
+<!--					<outputDirectory>classes</outputDirectory>-->
+<!--					<additionalConfig>-->
+<!--						<file>-->
+<!--							<name>.settings/org.eclipse.core.resources.prefs</name>-->
+<!--							<content>-->
+<!--               <![CDATA[eclipse.preferences.version=1${line.separator}encoding/<project>=${app.encoding}${line.separator}]]>-->
+<!--							</content>-->
+<!--						</file>-->
+<!--					</additionalConfig>-->
+<!--				</configuration>-->
+<!--			</plugin>-->
 
 			<!-- -->
 			<plugin>
