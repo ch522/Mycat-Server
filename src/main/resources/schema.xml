@@ -2,50 +2,176 @@
 <!DOCTYPE mycat:schema SYSTEM "schema.dtd">
 <mycat:schema xmlns:mycat="http://io.mycat/">
 
-	<schema name="TESTDB" checkSQLschema="true" sqlMaxLimit="100">
-		<!-- auto sharding by id (long) -->
-		<table name="travelrecord" dataNode="dn1,dn2,dn3" rule="auto-sharding-long" />
-		<!-- <table name="oc_call" primaryKey="ID" dataNode="dn1$0-743" rule="latest-month-calldate"
-			/> -->
-	</schema>
-	<!-- <dataNode name="dn1$0-743" dataHost="localhost1" database="db$0-743"
-		/> -->
-	<dataNode name="dn1" dataHost="localhost1" database="db1" />
-	<dataNode name="dn2" dataHost="localhost1" database="db2" />
-	<dataNode name="dn3" dataHost="localhost1" database="db3" />
-	<!--<dataNode name="dn4" dataHost="sequoiadb1" database="SAMPLE" />
-	 <dataNode name="jdbc_dn1" dataHost="jdbchost" database="db1" />
-	<dataNode	name="jdbc_dn2" dataHost="jdbchost" database="db2" />
-	<dataNode name="jdbc_dn3" 	dataHost="jdbchost" database="db3" /> -->
-	<dataHost name="localhost1" maxCon="1000" minCon="10" balance="0"
-			  writeType="0" dbType="mysql" dbDriver="native" switchType="1"  slaveThreshold="100">
-		<heartbeat>select user()</heartbeat>
-		<!-- can have multi write hosts -->
-		<writeHost host="hostM1" url="localhost:3306" user="root"
-				   password="123456">
-		</writeHost>
-		<!-- <writeHost host="hostM2" url="localhost:3316" user="root" password="123456"/> -->
-	</dataHost>
-	<!--
-		<dataHost name="sequoiadb1" maxCon="1000" minCon="1" balance="0" dbType="sequoiadb" dbDriver="jdbc">
-		<heartbeat> 		</heartbeat>
-		 <writeHost host="hostM1" url="sequoiadb://1426587161.dbaas.sequoialab.net:11920/SAMPLE" user="jifeng" 	password="jifeng"></writeHost>
-		 </dataHost>
+    <schema name="TESTDB" checkSQLschema="true" sqlMaxLimit="100">
+        <!-- auto sharding by id (long) -->
+        <table name="device_read" dataNode="dn1,dn$2-12,dn$13-24" rule="sharding-by-month"/>
+        <table name="device_read_hour" dataNode="dn1,dn$2-12,dn$13-24" rule="sharding-by-month"/>
+        <table name="device_read_minute" dataNode="dn1,dn$2-12,dn$13-24" rule="sharding-by-month"/>
+        <table name="device_charge" dataNode="dn1,dn$2-12,dn$13-24" rule="sharding-by-month"/>
 
-	  <dataHost name="oracle1" maxCon="1000" minCon="1" balance="0" writeType="0" 	dbType="oracle" dbDriver="jdbc"> <heartbeat>select 1 from dual</heartbeat>
-		<connectionInitSql>alter session set nls_date_format='yyyy-mm-dd hh24:mi:ss'</connectionInitSql>
-		<writeHost host="hostM1" url="jdbc:oracle:thin:@127.0.0.1:1521:nange" user="base" 	password="123456" > </writeHost> </dataHost>
+        <table name="account" dataNode="dn1"/>
+        <table name="account_change" dataNode="dn1"/>
+        <table name="address" dataNode="dn1"/>
+        <table name="address_type" dataNode="dn1"/>
+        <table name="alarm_policy" dataNode="dn1"/>
 
-		<dataHost name="jdbchost" maxCon="1000" 	minCon="1" balance="0" writeType="0" dbType="mongodb" dbDriver="jdbc">
-		<heartbeat>select 	user()</heartbeat>
-		<writeHost host="hostM" url="mongodb://192.168.0.99/test" user="admin" password="123456" ></writeHost> </dataHost>
+        <table name="alarm_policy_detail" dataNode="dn1"/>
+        <table name="alarm_record" dataNode="dn1"/>
+        <table name="archive" dataNode="dn1"/>
+        <table name="archive_accessory_extend" dataNode="dn1"/>
+        <table name="archive_change" dataNode="dn1"/>
 
-		<dataHost name="sparksql" maxCon="1000" minCon="1" balance="0" dbType="spark" dbDriver="jdbc">
-		<heartbeat> </heartbeat>
-		 <writeHost host="hostM1" url="jdbc:hive2://feng01:10000" user="jifeng" 	password="jifeng"></writeHost> </dataHost> -->
+        <table name="archive_extend" dataNode="dn1"/>
+        <table name="archive_replace" dataNode="dn1"/>
+        <table name="archive_replenish" dataNode="dn1"/>
+        <table name="attachment" dataNode="dn1"/>
+        <table name="audit_order" dataNode="dn1"/>
 
-	<!-- <dataHost name="jdbchost" maxCon="1000" minCon="10" balance="0" dbType="mysql"
-		dbDriver="jdbc"> <heartbeat>select user()</heartbeat> <writeHost host="hostM1"
-		url="jdbc:mysql://localhost:3306" user="root" password="123456"> </writeHost>
-		</dataHost> -->
+
+        <table name="audit_order_detail" dataNode="dn1"/>
+        <table name="buy_limit_conf" dataNode="dn1"/>
+        <table name="card" dataNode="dn1"/>
+        <table name="card_block" dataNode="dn1"/>
+        <table name="card_operate" dataNode="dn1"/>
+
+        <table name="carrier_type" dataNode="dn1"/>
+        <table name="certificate_type" dataNode="dn1"/>
+        <table name="charge" dataNode="dn1"/>
+        <table name="cmd_batch" dataNode="dn1"/>
+        <table name="cmd_log" dataNode="dn1"/>
+
+        <table name="cmd_pool" dataNode="dn1"/>
+        <table name="collection_data" dataNode="dn1"/>
+        <table name="command" dataNode="dn1"/>
+        <table name="command_group" dataNode="dn1"/>
+        <table name="command_param" dataNode="dn1"/>
+
+        <table name="contract" dataNode="dn1"/>
+        <table name="customer" dataNode="dn1"/>
+        <table name="device" dataNode="dn1"/>
+        <table name="device_attribute" dataNode="dn1"/>
+        <table name="device_attribute_map" dataNode="dn1"/>
+
+        <table name="device_attribute_record" dataNode="dn1"/>
+        <table name="device_basic_extend" dataNode="dn1"/>
+
+        <table name="device_event_record" dataNode="dn1"/>
+        <table name="device_factory" dataNode="dn1"/>
+
+        <table name="device_map" dataNode="dn1"/>
+        <table name="device_meter_extend" dataNode="dn1"/>
+        <table name="device_price_log" dataNode="dn1"/>
+        <table name="device_price_map" dataNode="dn1"/>
+        <!--<table name="device_read" dataNode="dn1"/>-->
+
+        <table name="device_read_cache_day" dataNode="dn1"/>
+        <!--<table name="device_meter_extend" dataNode="dn1"/>-->
+        <table name="device_read_cache_hour" dataNode="dn1"/>
+        <table name="device_read_cache_month" dataNode="dn1"/>
+        <!--<table name="device_read_hour" dataNode="dn1"/>-->
+
+        <!--<table name="device_read_minute" dataNode="dn1"/>-->
+        <table name="device_secret" dataNode="dn1"/>
+        <table name="device_spec" dataNode="dn1"/>
+        <table name="device_type" dataNode="dn1"/>
+        <table name="device_type_attribute" dataNode="dn1"/>
+
+        <table name="device_verify" dataNode="dn1"/>
+        <table name="dictionary" dataNode="dn1"/>
+        <table name="dictionary_type" dataNode="dn1"/>
+        <table name="district" dataNode="dn1"/>
+        <table name="employee" dataNode="dn1"/>
+
+        <table name="employee_track" dataNode="dn1"/>
+        <table name="erp_org_map" dataNode="dn1"/>
+        <table name="fee" dataNode="dn1"/>
+        <table name="fee_item" dataNode="dn1"/>
+        <table name="func_authority" dataNode="dn1"/>
+
+        <table name="inter_record" dataNode="dn1"/>
+        <table name="late_fee_conf" dataNode="dn1"/>
+        <table name="late_fee_derate" dataNode="dn1"/>
+        <table name="lead_sealing" dataNode="dn1"/>
+        <table name="location_type" dataNode="dn1"/>
+
+        <table name="material" dataNode="dn1"/>
+        <table name="material_deliver" dataNode="dn1"/>
+        <table name="material_type" dataNode="dn1"/>
+        <table name="meter_read_book" dataNode="dn1"/>
+        <table name="meter_read_job" dataNode="dn1"/>
+
+        <table name="meter_read_record" dataNode="dn1"/>
+        <table name="organization" dataNode="dn1"/>
+        <table name="pay_type" dataNode="dn1"/>
+        <table name="price" dataNode="dn1"/>
+        <table name="price_adjust" dataNode="dn1"/>
+
+        <table name="price_detail" dataNode="dn1"/>
+        <table name="role" dataNode="dn1"/>
+        <table name="role_auth_map" dataNode="dn1"/>
+        <table name="role_org_map" dataNode="dn1"/>
+        <table name="security_item" dataNode="dn1"/>
+
+        <table name="security_plan" dataNode="dn1"/>
+        <table name="security_record" dataNode="dn1"/>
+        <table name="security_record_history" dataNode="dn1"/>
+        <table name="security_record_problem" dataNode="dn1"/>
+        <table name="security_task" dataNode="dn1"/>
+
+        <table name="security_template" dataNode="dn1"/>
+        <table name="sequence" dataNode="dn1"/>
+        <table name="specification_type" dataNode="dn1"/>
+        <table name="system_param" dataNode="dn1"/>
+        <table name="turnover" dataNode="dn1"/>
+
+        <table name="turnover_record" dataNode="dn1"/>
+        <table name="wo_type" dataNode="dn1"/>
+        <table name="work_flow_history" dataNode="dn1"/>
+        <table name="work_order" dataNode="dn1"/>
+        <table name="work_order_detail" dataNode="dn1"/>
+
+        <!--<table name="device" dataNode="dn1"/>-->
+        <!-- <table name="oc_call" primaryKey="ID" dataNode="dn1$0-743" rule="latest-month-calldate"
+            /> -->
+    </schema>
+    <!-- <dataNode name="dn1$0-743" dataHost="localhost1" database="db$0-743"
+        /> -->
+    <dataNode name="dn1" dataHost="localhost1" database="base"/>
+    <dataNode name="dn$2-12" dataHost="localhost1" database="base$201902-201912"/>
+    <dataNode name="dn$13-24" dataHost="localhost1" database="base$202001-202012"/>
+    <!--<dataNode name="dn4" dataHost="sequoiadb1" database="SAMPLE" />
+     <dataNode name="jdbc_dn1" dataHost="jdbchost" database="db1" />
+    <dataNode	name="jdbc_dn2" dataHost="jdbchost" database="db2" />
+    <dataNode name="jdbc_dn3" 	dataHost="jdbchost" database="db3" /> -->
+    <dataHost name="localhost1" maxCon="1000" minCon="10" balance="0"
+              writeType="0" dbType="mysql" dbDriver="native" switchType="1" slaveThreshold="100">
+        <heartbeat>select user()</heartbeat>
+        <!-- can have multi write hosts -->
+        <writeHost host="hostM1" url="localhost:3306" user="root"
+                   password="123456">
+        </writeHost>
+        <!-- <writeHost host="hostM2" url="localhost:3316" user="root" password="123456"/> -->
+    </dataHost>
+    <!--
+        <dataHost name="sequoiadb1" maxCon="1000" minCon="1" balance="0" dbType="sequoiadb" dbDriver="jdbc">
+        <heartbeat> 		</heartbeat>
+         <writeHost host="hostM1" url="sequoiadb://1426587161.dbaas.sequoialab.net:11920/SAMPLE" user="jifeng" 	password="jifeng"></writeHost>
+         </dataHost>
+
+      <dataHost name="oracle1" maxCon="1000" minCon="1" balance="0" writeType="0" 	dbType="oracle" dbDriver="jdbc"> <heartbeat>select 1 from dual</heartbeat>
+        <connectionInitSql>alter session set nls_date_format='yyyy-mm-dd hh24:mi:ss'</connectionInitSql>
+        <writeHost host="hostM1" url="jdbc:oracle:thin:@127.0.0.1:1521:nange" user="base" 	password="123456" > </writeHost> </dataHost>
+
+        <dataHost name="jdbchost" maxCon="1000" 	minCon="1" balance="0" writeType="0" dbType="mongodb" dbDriver="jdbc">
+        <heartbeat>select 	user()</heartbeat>
+        <writeHost host="hostM" url="mongodb://192.168.0.99/test" user="admin" password="123456" ></writeHost> </dataHost>
+
+        <dataHost name="sparksql" maxCon="1000" minCon="1" balance="0" dbType="spark" dbDriver="jdbc">
+        <heartbeat> </heartbeat>
+         <writeHost host="hostM1" url="jdbc:hive2://feng01:10000" user="jifeng" 	password="jifeng"></writeHost> </dataHost> -->
+
+    <!-- <dataHost name="jdbchost" maxCon="1000" minCon="10" balance="0" dbType="mysql"
+        dbDriver="jdbc"> <heartbeat>select user()</heartbeat> <writeHost host="hostM1"
+        url="jdbc:mysql://localhost:3306" user="root" password="123456"> </writeHost>
+        </dataHost> -->
 </mycat:schema>

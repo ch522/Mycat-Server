@@ -139,7 +139,7 @@ public class MycatServer {
 
     public static final MycatServer getInstance() {
         return INSTANCE;
-    }
+}
 
     private final MycatConfig config;
     private final ScheduledExecutorService scheduler;
